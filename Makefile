@@ -20,3 +20,7 @@ $(SUBDIRS) :
 # these targets need to be exercised
 # irrespective of the target exist or updated recently
 .PHONY : $(TOPTARGETS) $(SUBDIRS)
+
+clean :
+	rm -f *~ .*~
+	rm -rf bin
