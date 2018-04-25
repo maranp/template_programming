@@ -6,6 +6,8 @@
  */
 
 #include "stack.hpp"
+#include "stack1.hpp"
+#include "stack_part_spec.hpp"
 #include "../ihelper.h"
 int main() {
   stack<int> si;
@@ -17,5 +19,14 @@ int main() {
   cout << ss.top() << endl;
 
   cout << ss;
+
+  stack<int *> sip;
+  int x = 10;
+  sip.push(&x);
+  int *y = new int {10};
+  sip.push(y);
+  cout << sip;
+  delete sip.pop();
+  cout << *sip.top() << endl;
 }
 

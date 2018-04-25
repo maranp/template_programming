@@ -8,6 +8,9 @@
 #include <vector>
 using std::vector;
 
+#include <deque>
+using std::deque;
+
 #include <iostream>
 using std::cout;
 using std::endl;
