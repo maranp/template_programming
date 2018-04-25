@@ -7,6 +7,15 @@ using std::vector;
 
 #include "../ihelper.h"
 
+// method 3 of printing a container on a stream
+// forward declaration of stack<T>
+// not working
+//template <typename T>
+//class stack;
+// forward declaration of function template
+//template <typename T>
+//std::ostream & operator>>(std::ostream &, stack<T> const &);
+
 template <typename T>
 class stack {
 private:
@@ -25,13 +34,21 @@ public:
     return *this;
   }
 
+//  method 1
 //  void printon(std::ostream & strm) const {
 //    for (auto const & e : elems) {
 //      strm << e << '\n';
 //    }
 //  }
+
+  // method 2
   template <typename U>
   friend std::ostream & operator<<(std::ostream & strm, stack<U> const & s);
+
+  // method 3
+  // specialization of function template operator<< for T, the type of this instance of class
+  // mot working
+//  friend std::ostream & operator<< <T> (std::ostream &, stack<T> const &);
 };
 
 
@@ -52,12 +69,14 @@ T const & stack<T>::top() const {
   return elems.back();
 }
 
+// method 1
 //template <typename T>
 //std::ostream & operator<<(std::ostream & strm, stack<T> const & s) {
 //  s.printon(strm);
 //  return strm;
 //}
 
+// method 2
 template <typename U>
 std::ostream & operator<<(std::ostream & strm, stack<U> const & s) {
   for (auto const & e : s.elems) {
@@ -65,3 +84,14 @@ std::ostream & operator<<(std::ostream & strm, stack<U> const & s) {
   }
   return strm;
 }
+
+// method 3
+// implementation of template specialization of operator<<
+// not working
+//template <typename T>
+//std::ostream & operator<< <T>(std::ostream & strm, stack<T> const & s) {
+//  for (auto const & e : s.elems) {
+//    strm << e << ' #\n';
+//  }
+//  return strm;
+//}
