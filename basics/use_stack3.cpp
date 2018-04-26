@@ -1,14 +1,15 @@
 /*
- * main.cpp
+ * use_stack3.cpp
  *
- *  Created on: 24-Apr-2018
+ *  Created on: 26-Apr-2018
  *      Author: maran
  */
 
-#include "stack.hpp"
-#include "stack1.hpp"
-#include "stack_part_spec.hpp"
 #include "../ihelper.h"
+
+#include "stack3.hpp"
+
+
 int main() {
   stack<int> si;
   si.push(7);
@@ -26,7 +27,14 @@ int main() {
   int *y = new int {10};
   sip.push(y);
   cout << sip;
-  delete sip.pop();
+  //delete sip.pop();
   cout << *sip.top() << endl;
+
+  stack<double, deque<double>> sd;
+  sd.push(5.5);
+  sd.push(6.5);
+  cout << sd;
+
 }
+
 
