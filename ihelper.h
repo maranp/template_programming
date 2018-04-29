@@ -11,12 +11,19 @@ using std::vector;
 #include <deque>
 using std::deque;
 
+#include <array>
+using std::array;
+
 #include <iostream>
 using std::cout;
 using std::endl;
+using std::ostream;
 
 #include <string>
 using std::string;
+
+#include <complex>
+using std::complex;
 
 // print the container
 auto cprint = [](auto const & c) {
@@ -33,6 +40,17 @@ auto iprint = [](auto && from, auto && to) {
   });
   cout << '\n';
 };
+
+template <typename Arg>
+void vprint(Arg arg) {
+  cout << arg << endl;
+}
+
+template <typename Arg, typename... Args>
+void vprint(Arg arg, Args... args) {
+  cout << arg << ' ';
+  vprint(args...);
+}
 
 #include <typeinfo>
 #include <cxxabi.h>
