@@ -37,6 +37,19 @@ void add_one(Args... args) {
 }
 
 template <typename Coll, typename... Idx>
-void print_coll_indices(Coll coll, Idx... idx) {
+void print_coll_indices(Coll const & coll, Idx... idx) {
   vprint_space(coll[idx]...);
+}
+
+template <size_t... Idx, typename Coll>
+void print_coll_indices(Coll const & coll) {
+  vprint_space(coll[Idx]...);
+}
+
+template <size_t... Idx>
+class Indices {};
+
+template <typename Collection, size_t... Idx>
+void print_coll_indices(Collection const & coll, Indices<Idx...>) {
+  vprint_space(std::get<Idx>(coll)...);
 }

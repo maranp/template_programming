@@ -47,6 +47,10 @@ int main() {
 
   vector vs {"zero", "one", "two", "three"};
   print_coll_indices(vs, 1, 3);
+  print_coll_indices<0, 2>(vs);
+
+  auto t = std::make_tuple<std::string, int, double>("hello", 5, 4.4);
+  print_coll_indices(t, Indices<0, 2>());
 
 }
 

@@ -14,6 +14,9 @@ using std::deque;
 #include <array>
 using std::array;
 
+#include <tuple>
+using std::tuple;
+
 #include <iostream>
 using std::cout;
 using std::endl;
