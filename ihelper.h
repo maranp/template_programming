@@ -28,6 +28,8 @@ using std::string;
 #include <complex>
 using std::complex;
 
+using std::boolalpha;
+
 // print the container
 auto cprint = [](auto const & c) {
   std::for_each(begin(c), end(c), [](auto const &e) {
