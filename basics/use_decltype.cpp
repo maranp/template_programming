@@ -33,7 +33,8 @@ int main() {
     cout << "prvalue\n";
   }
 
-  int &&z = move(y);
+  // int &&z = move(y);
+  int &&z = 5; // temporary matetialization
   if constexpr (std::is_lvalue_reference<decltype(z)>::value) {
     cout << "lvalue reference\n";
   } else if constexpr (std::is_rvalue_reference<decltype(z)>::value) {
