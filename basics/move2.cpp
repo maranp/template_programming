@@ -9,14 +9,17 @@
 
 class X {};
 
+// takes lvalue
 void g(X&) {
   cout << "->g(X&)\n";
 }
 
+// takes lvalue, lvalue const, xvalue, prvalue
 void g(X const&) {
   cout << "->g(X const&)\n";
 }
 
+// xvalue, prvalue (no lvalue)
 void g(X &&) {
   cout << "->g(X&&)\n";
 }
@@ -37,9 +40,9 @@ void f(T&& x) {
   // f(x) -> g(X&) // x is a copy. call to g(X&) is perfect
   // X const x;
   // f(x) -> g(X const&) // x is a const reference. call to g(X const &) is perfect
-  // f(move(x) -> g(X&) // x is a rvalue reference. call to g(X&) is not perfect as g(X&&) is the perfect match
+  // f(move(x)) -> g(X&) // x is a rvalue reference. call to g(X&) is not perfect as g(X&&) is the perfect match
   g(x);
-  g(std::forward<T>(x)); // f(move(x) -> g(X&&) // perfect matched version is called for all 3 cases
+  g(std::forward<T>(x)); // f(move(x)) -> g(X&&) // perfect matched version is called for all 3 cases
 }
 
 int main() {
