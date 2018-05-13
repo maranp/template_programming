@@ -8,6 +8,9 @@
 #include <vector>
 using std::vector;
 
+#include <list>
+using std::list;
+
 #include <deque>
 using std::deque;
 
