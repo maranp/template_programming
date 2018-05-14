@@ -28,7 +28,7 @@ struct is_same0<T, T> {
 // look at the illustration of base class resolution for derived class parameter
 // in is_same1.cpp
 // for this reason, in general, the traits (class templates) that
-// yield boolean values should derive from std::true_type and std::false_type
+// yield boolean values (predicate traits) should derive from std::true_type and std::false_type
 
 template <bool val>
 struct BoolType {
