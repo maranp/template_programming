@@ -21,6 +21,9 @@
 template <typename T, typename = std::void_t<>>
 struct is_nothrow_move_constructible : std::false_type {};
 
+// let's first decide whether move cinstruction of T is valid
+// by sfinaeing out if not valid
+// if T(T&&) is valid, we move onto check its noexcept-ness
 template <typename T>
 struct is_nothrow_move_constructible<T, std::void_t<decltype(T(std::declval<T>()))>>
   : std::bool_constant<noexcept(T(std::declval<T>()))>{};
