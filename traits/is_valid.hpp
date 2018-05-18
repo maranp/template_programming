@@ -37,12 +37,25 @@ struct type_t {
   using type = T;
 };
 
+// a helper used by the end user application to pass value to inner lambda (f)
+// which strips the correct T from the value passed
 template <typename T>
-constexpr auto type_as_val = type_t<T>{};
+constexpr auto type_val = type_t<T>{};
 
 // use it in unevaluated context
 // unwrap a wrapped type
 template <typename T>
-T value_of_t(type_t<T>);
+T value_of_type_t(type_t<T> x);
 
-// decltype(type_as_val<T>) gives T
+
+// value_of_type_t(x) -> return type is T if x is type_t<T>
+// so decltype(value_of_type_t(x)) is T
+// so, decltype(value_of_type_t(x))() => T() (default constructor of T)
+// decltype((void)decltype(value_of_type_t(x))()) => decltype((void)T()) => void
+// the inner lambda, say f => [](auto x) -> decltype((void)decltype(value_of_type_t(x))()) {}
+// will be instantiated only if T() is valid. If T() is not valid.
+// the lambda, f, would not be instantiated and hence, the checking of
+// f(x) in isValidImpl will fail and in turn will return false_type
+constexpr auto is_def_ctorble = is_valid(
+    [](auto x) -> decltype((void)decltype(value_of_type_t(x))()) {}
+    );
