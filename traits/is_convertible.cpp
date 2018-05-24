@@ -16,6 +16,12 @@ struct is_convble_helper {
 // if a From type is passed to a function and the function
 // takes To type, the function(To) will be selected
 // if From to To conversion is possible.
+// there are few caveats not addressed in this technique.
+// to address these caveats, we add a default bool parameter
+// that take care of these caveats. They are
+// 1. void to void conversion is valid
+// 2. To type cannot be array or function type
+
 template <typename From, typename To>
 struct is_convble_helper<From, To, false> {
 private:
