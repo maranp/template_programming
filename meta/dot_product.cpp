@@ -9,11 +9,16 @@
 
 template <typename T, size_t N>
 struct dot_product {
+  // the function is implictly inline as it is defined inside the body of the class
+  // however, if inline is explicitly added, clang takes it as a hint
+  // try little harder to inline calls
   static inline T result(T const* a, T const* b) {
+    // recursive template instantiation
     return *a * *b + dot_product<T, N - 1>::result(a + 1, b + 1);
   }
 };
 
+// class template partial specialization to end the recursion
 template <typename T>
 struct dot_product<T, 0> {
   static inline T result(T const* a, T const* b) {
