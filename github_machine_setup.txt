@@ -1,0 +1,25 @@
+checkout:
+git clone https://github.com/maranp/template_programming.git
+git config user.name "Maran Pakkirisamy"
+git config user.email "pmaran.me@gmail.com"
+git remote set-url origin git+ssh://git@github.com/maranp/template_programming.git
+#git config --global push.default simple
+# cat ~/.ssh/id_rsa.pub
+# copy it to github.com -> settings -> SSH and GPG Keys -> New SSH key
+git push
+
+github push without password:
+Solution 1:
+cat ~/.ssh/id_rsa.pub
+
+github.com -> user - view profile and more
+	      -> settings -> SSH and GPG keys
+	      	    -> New SSH key and paste id_rsa.pub
+
+git remote show origin
+URL must be as shown below. Otherwise change it with following command.
+
+git remote set-url origin git+ssh://git@github.com/maranp/ranges-cpp.git
+
+Solution 2:
+git push --repo https://maranp:github83@github.com/maranp/ranges-cpp.git
